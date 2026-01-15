@@ -8,21 +8,17 @@ interface Props {
 const { quote, author, role } = Astro.props;
 ---
 
-<div class="card glass-shine group hover:shadow-2xl transition-all duration-500">
-  <!-- Quote icon with glow -->
-  <div class="relative mb-4">
-    <div class="absolute -inset-2 bg-brand-gold/10 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-    <svg class="w-10 h-10 text-brand-gold/40 group-hover:text-brand-gold/60 transition-colors duration-300 relative z-10" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
-    </svg>
-  </div>
+<div class="card glass-shine group h-full flex flex-col">
+  <svg class="w-8 h-8 text-brand-gold/30 mb-3 group-hover:text-brand-gold/50 transition-colors" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+  </svg>
 
-  <blockquote class="text-lg text-brand-navy mb-6 leading-relaxed group-hover:text-brand-navy/90 transition-colors duration-300">
+  <blockquote class="text-white/80 text-sm mb-4 flex-1 leading-relaxed">
     "{quote}"
   </blockquote>
 
-  <div class="border-t border-brand-gold/10 pt-4 group-hover:border-brand-gold/20 transition-colors duration-300">
-    <p class="font-display font-bold text-brand-navy">{author}</p>
-    {role && <p class="text-brand-gray text-sm">{role}</p>}
+  <div class="border-t border-white/10 pt-3">
+    <p class="font-display font-bold text-sm">{author}</p>
+    {role && <p class="text-white/40 text-xs">{role}</p>}
   </div>
 </div>

@@ -10,31 +10,31 @@ const navLinks = [
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="sticky top-0 z-50 glass border-b border-white/20 animate-fade-in">
-  <nav class="container py-4">
+<header class="sticky top-0 z-50 glass border-b border-white/5">
+  <nav class="container py-3">
     <div class="flex items-center justify-between">
-      <!-- Logo from original site -->
+      <!-- Logo -->
       <a href="/waypoint-talks/" class="flex items-center gap-3 group">
         <img
           src="https://waypointtalks.com/wp-content/uploads/2025/03/Waypoint-talks-4.png"
           alt="Waypoint Talks"
-          class="h-10 w-10 object-contain transition-transform duration-300 group-hover:scale-110"
+          class="h-9 w-9 object-contain transition-transform duration-300 group-hover:scale-110"
         />
-        <span class="font-display font-bold text-xl text-brand-navy group-hover:text-brand-gold transition-colors duration-300">
+        <span class="font-display font-bold text-lg text-white group-hover:text-brand-gold transition-colors duration-300">
           Waypoint Talks
         </span>
       </a>
 
       <!-- Desktop Navigation -->
-      <div class="hidden md:flex items-center gap-8">
+      <div class="hidden md:flex items-center gap-6">
         {navLinks.map(link => (
           <a
             href={link.href}
             class:list={[
-              'font-medium transition-all duration-300 hover-underline',
+              'text-sm font-medium transition-all duration-300 hover-underline',
               currentPath === link.href || (link.href !== '/waypoint-talks/' && currentPath.startsWith(link.href))
                 ? 'text-brand-gold'
-                : 'text-brand-navy hover:text-brand-gold'
+                : 'text-white/70 hover:text-white'
             ]}
           >
             {link.label}
@@ -44,7 +44,7 @@ const currentPath = Astro.url.pathname;
           href="https://calendly.com/waypointtalks"
           target="_blank"
           rel="noopener"
-          class="btn-primary glass-shine"
+          class="btn-primary text-sm px-4 py-2 glass-shine"
         >
           Book a Call
         </a>
@@ -53,28 +53,27 @@ const currentPath = Astro.url.pathname;
       <!-- Mobile Menu Button -->
       <button
         id="mobile-menu-btn"
-        class="md:hidden p-2 text-brand-navy hover:text-brand-gold transition-colors rounded-lg hover:bg-white/50"
+        class="md:hidden p-2 text-white/70 hover:text-brand-gold transition-colors rounded-lg hover:bg-white/5"
         aria-label="Toggle menu"
       >
-        <svg class="w-6 h-6 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
     </div>
 
-    <!-- Mobile Navigation - Glass Panel -->
-    <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-white/20 pt-4">
-      <div class="flex flex-col gap-4 animate-fade-in-up">
-        {navLinks.map((link, index) => (
+    <!-- Mobile Navigation -->
+    <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-white/10 pt-4">
+      <div class="flex flex-col gap-3">
+        {navLinks.map(link => (
           <a
             href={link.href}
             class:list={[
-              'font-medium py-2 px-4 rounded-lg transition-all duration-300',
+              'text-sm font-medium py-2 px-3 rounded-lg transition-all duration-300',
               currentPath === link.href || (link.href !== '/waypoint-talks/' && currentPath.startsWith(link.href))
                 ? 'text-brand-gold bg-brand-gold/10'
-                : 'text-brand-navy hover:text-brand-gold hover:bg-white/50'
+                : 'text-white/70 hover:text-white hover:bg-white/5'
             ]}
-            style={`animation-delay: ${index * 0.05}s`}
           >
             {link.label}
           </a>
@@ -83,7 +82,7 @@ const currentPath = Astro.url.pathname;
           href="https://calendly.com/waypointtalks"
           target="_blank"
           rel="noopener"
-          class="btn-primary text-center mt-2"
+          class="btn-primary text-center mt-2 text-sm"
         >
           Book a Call
         </a>
@@ -100,24 +99,8 @@ const currentPath = Astro.url.pathname;
   menuBtn?.addEventListener('click', () => {
     const isOpen = mobileMenu?.classList.contains('hidden');
     mobileMenu?.classList.toggle('hidden');
-
-    // Rotate hamburger to X
-    if (menuBtn) {
-      menuBtn.querySelector('svg')?.classList.toggle('rotate-90');
-    }
-
     if (menuIcon) {
-      menuIcon.setAttribute('d', isOpen
-        ? 'M6 18L18 6M6 6l12 12'
-        : 'M4 6h16M4 12h16M4 18h16'
-      );
+      menuIcon.setAttribute('d', isOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16');
     }
   });
 </script>
-
-<style>
-  header {
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-  }
-</style>
