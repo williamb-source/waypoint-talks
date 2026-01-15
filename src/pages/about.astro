@@ -8,26 +8,31 @@ import Button from '../components/Button.astro';
   description="Learn about William Bierbower and the philosophy behind Waypoint Talks clarity coaching."
 >
   <!-- Hero Section -->
-  <section class="section">
-    <div class="container">
+  <section class="section hero-glow relative overflow-hidden">
+    <!-- Decorative blobs -->
+    <div class="absolute top-10 right-20 w-72 h-72 bg-brand-gold/5 rounded-full blur-3xl animate-float"></div>
+
+    <div class="container relative z-10">
       <div class="max-w-4xl mx-auto">
         <div class="grid md:grid-cols-2 gap-12 items-center">
-          <!-- Image Placeholder -->
-          <div class="order-2 md:order-1">
-            <div class="aspect-square bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 rounded-2xl flex items-center justify-center">
-              <div class="text-center p-8">
-                <div class="w-32 h-32 bg-brand-gold rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span class="text-white font-display font-bold text-5xl">W</span>
-                </div>
+          <!-- Image with glass effect -->
+          <div class="order-2 md:order-1 scroll-animate-left">
+            <div class="aspect-square glass rounded-3xl flex items-center justify-center p-8 hover-lift">
+              <div class="text-center">
+                <img
+                  src="https://waypointtalks.com/wp-content/uploads/2025/03/Waypoint-talks-4.png"
+                  alt="Waypoint Talks"
+                  class="w-40 h-40 mx-auto mb-4 animate-float"
+                />
                 <p class="text-brand-gray text-sm">Photo coming soon</p>
               </div>
             </div>
           </div>
 
           <!-- Text Content -->
-          <div class="order-1 md:order-2">
+          <div class="order-1 md:order-2 animate-fade-in-up">
             <h1 class="text-4xl md:text-5xl font-display text-brand-navy mb-6">
-              Hi, I'm William
+              Hi, I'm <span class="text-gradient">William</span>
             </h1>
             <p class="text-lg text-brand-gray leading-relaxed mb-6">
               I founded Waypoint Talks because I believe <strong class="text-brand-navy">clarity takes space</strong> — and most of us don't give ourselves enough of it.
@@ -42,23 +47,23 @@ import Button from '../components/Button.astro';
   </section>
 
   <!-- Story Section -->
-  <section class="section bg-white">
+  <section class="section">
     <div class="container">
       <div class="max-w-3xl mx-auto">
-        <h2 class="text-3xl font-display text-brand-navy mb-8 text-center">
+        <h2 class="text-3xl font-display text-brand-navy mb-8 text-center scroll-animate">
           Why Waypoint Talks Exists
         </h2>
 
-        <div class="prose prose-lg max-w-none text-brand-gray space-y-6">
-          <p>
+        <div class="space-y-6 text-lg text-brand-gray">
+          <p class="scroll-animate">
             I've been where you might be right now — at a crossroads, overwhelmed by options, feeling disconnected from what actually matters. For years, I thought the answer was more information, more advice, more thinking.
           </p>
 
-          <p>
+          <p class="scroll-animate" style="transition-delay: 0.1s;">
             It wasn't. The answer was space. Space to slow down. Space to hear my own thoughts. Space to reconnect with my priorities without the noise of everyone else's opinions.
           </p>
 
-          <p>
+          <p class="scroll-animate" style="transition-delay: 0.2s;">
             That's what I offer through Waypoint Talks: a space to think out loud, untangle what's going on, and find your next step forward. Not therapy. Not consulting. Just clarity-focused conversations that leave you grounded and ready to move.
           </p>
         </div>
@@ -67,85 +72,57 @@ import Button from '../components/Button.astro';
   </section>
 
   <!-- Approach Section -->
-  <section class="section">
-    <div class="container">
+  <section class="section relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-white/30 to-transparent"></div>
+
+    <div class="container relative z-10">
       <div class="max-w-4xl mx-auto">
-        <h2 class="text-3xl font-display text-brand-navy mb-12 text-center">
+        <h2 class="text-3xl font-display text-brand-navy mb-12 text-center scroll-animate">
           How I Work
         </h2>
 
         <div class="grid md:grid-cols-2 gap-8">
-          <div class="card">
-            <div class="w-12 h-12 bg-brand-gold/10 rounded-full flex items-center justify-center mb-4">
-              <span class="text-brand-gold font-display font-bold text-xl">1</span>
+          {[
+            { num: '1', title: 'Start Where You Are', desc: "There's no prep required. You don't need to have your thoughts organized or know exactly what you want to talk about. We start wherever you are." },
+            { num: '2', title: 'Create Space to Think', desc: "I ask questions that help you hear yourself think. No judgment, no agenda — just genuine curiosity about what's going on for you." },
+            { num: '3', title: 'Find the Signal', desc: "Together, we identify what actually matters underneath all the noise. Often it's not what you expected — and that's the breakthrough." },
+            { num: '4', title: 'Leave with Direction', desc: "Every session ends with one clear insight and one concrete next step. You leave knowing exactly what to do — and feeling ready to do it." }
+          ].map((item, index) => (
+            <div class="card glass-shine hover-lift scroll-animate" style={`transition-delay: ${index * 0.1}s;`}>
+              <div class="w-12 h-12 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 rounded-xl flex items-center justify-center mb-4">
+                <span class="text-brand-gold font-display font-bold text-xl">{item.num}</span>
+              </div>
+              <h3 class="font-display text-xl text-brand-navy mb-3">{item.title}</h3>
+              <p class="text-brand-gray">{item.desc}</p>
             </div>
-            <h3 class="font-display text-xl text-brand-navy mb-3">Start Where You Are</h3>
-            <p class="text-brand-gray">
-              There's no prep required. You don't need to have your thoughts organized or know exactly what you want to talk about. We start wherever you are.
-            </p>
-          </div>
-
-          <div class="card">
-            <div class="w-12 h-12 bg-brand-gold/10 rounded-full flex items-center justify-center mb-4">
-              <span class="text-brand-gold font-display font-bold text-xl">2</span>
-            </div>
-            <h3 class="font-display text-xl text-brand-navy mb-3">Create Space to Think</h3>
-            <p class="text-brand-gray">
-              I ask questions that help you hear yourself think. No judgment, no agenda — just genuine curiosity about what's going on for you.
-            </p>
-          </div>
-
-          <div class="card">
-            <div class="w-12 h-12 bg-brand-gold/10 rounded-full flex items-center justify-center mb-4">
-              <span class="text-brand-gold font-display font-bold text-xl">3</span>
-            </div>
-            <h3 class="font-display text-xl text-brand-navy mb-3">Find the Signal</h3>
-            <p class="text-brand-gray">
-              Together, we identify what actually matters underneath all the noise. Often it's not what you expected — and that's the breakthrough.
-            </p>
-          </div>
-
-          <div class="card">
-            <div class="w-12 h-12 bg-brand-gold/10 rounded-full flex items-center justify-center mb-4">
-              <span class="text-brand-gold font-display font-bold text-xl">4</span>
-            </div>
-            <h3 class="font-display text-xl text-brand-navy mb-3">Leave with Direction</h3>
-            <p class="text-brand-gray">
-              Every session ends with one clear insight and one concrete next step. You leave knowing exactly what to do — and feeling ready to do it.
-            </p>
-          </div>
+          ))}
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Values Section -->
-  <section class="section bg-brand-navy text-white">
-    <div class="container">
+  <!-- Values Section - Glass Dark -->
+  <section class="section relative overflow-hidden">
+    <div class="absolute inset-0 bg-brand-navy"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-brand-gold/10 via-transparent to-brand-gold/5"></div>
+
+    <div class="container relative z-10">
       <div class="max-w-3xl mx-auto text-center">
-        <h2 class="text-3xl font-display mb-8">What I Believe</h2>
+        <h2 class="text-3xl font-display text-white mb-8 scroll-animate">What I Believe</h2>
 
         <div class="grid gap-6 text-left">
-          <div class="bg-white/5 rounded-xl p-6">
-            <p class="text-lg">
-              <span class="text-brand-gold font-semibold">Clarity isn't about having all the answers.</span>
-              <span class="text-gray-300"> It's about knowing your next step.</span>
-            </p>
-          </div>
-
-          <div class="bg-white/5 rounded-xl p-6">
-            <p class="text-lg">
-              <span class="text-brand-gold font-semibold">You already have wisdom.</span>
-              <span class="text-gray-300"> Sometimes you just need space to access it.</span>
-            </p>
-          </div>
-
-          <div class="bg-white/5 rounded-xl p-6">
-            <p class="text-lg">
-              <span class="text-brand-gold font-semibold">Action beats perfect planning.</span>
-              <span class="text-gray-300"> One clear step forward is worth more than a hundred hypothetical paths.</span>
-            </p>
-          </div>
+          {[
+            { gold: "Clarity isn't about having all the answers.", rest: " It's about knowing your next step." },
+            { gold: "You already have wisdom.", rest: " Sometimes you just need space to access it." },
+            { gold: "Action beats perfect planning.", rest: " One clear step forward is worth more than a hundred hypothetical paths." }
+          ].map((belief, index) => (
+            <div class="glass-dark rounded-xl p-6 scroll-animate hover-lift" style={`transition-delay: ${index * 0.1}s;`}>
+              <p class="text-lg">
+                <span class="text-brand-gold font-semibold">{belief.gold}</span>
+                <span class="text-gray-300">{belief.rest}</span>
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -154,16 +131,21 @@ import Button from '../components/Button.astro';
   <!-- CTA Section -->
   <section class="section">
     <div class="container">
-      <div class="max-w-2xl mx-auto text-center">
+      <div class="max-w-2xl mx-auto text-center scroll-animate">
         <h2 class="text-3xl font-display text-brand-navy mb-4">
           Ready to Find Your Clarity?
         </h2>
         <p class="text-lg text-brand-gray mb-8">
           Let's have a conversation. No pressure, no commitment — just a chance to explore what's possible.
         </p>
-        <Button href="https://calendly.com/waypointtalks" external size="lg">
+        <a
+          href="https://calendly.com/waypointtalks"
+          target="_blank"
+          rel="noopener"
+          class="btn-primary animate-pulse-subtle glass-shine text-lg px-8 py-4"
+        >
           Book a Free Intro Call
-        </Button>
+        </a>
       </div>
     </div>
   </section>

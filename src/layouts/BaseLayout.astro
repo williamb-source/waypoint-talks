@@ -25,11 +25,95 @@ const { title, description, image, article } = Astro.props;
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
     <SEO title={title} description={description} image={image} article={article} />
   </head>
-  <body class="min-h-screen flex flex-col">
+  <body class="min-h-screen flex flex-col bg-gradient-animated noise-overlay">
     <Header />
     <main class="flex-grow">
       <slot />
     </main>
     <Footer />
+
+    <!-- Scroll Animation Observer -->
+    <script is:inline>
+      // Intersection Observer for scroll animations
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -50px 0px',
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            // Optional: unobserve after animation
+            // observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      // Observe all elements with scroll animation classes
+      document.addEventListener('DOMContentLoaded', () => {
+        const animatedElements = document.querySelectorAll(
+          '.scroll-animate, .scroll-animate-left, .scroll-animate-right, .scroll-animate-scale'
+        );
+        animatedElements.forEach(el => observer.observe(el));
+      });
+
+      // Also handle elements added dynamically (for SPA-like navigation)
+      document.addEventListener('astro:page-load', () => {
+        const animatedElements = document.querySelectorAll(
+          '.scroll-animate, .scroll-animate-left, .scroll-animate-right, .scroll-animate-scale'
+        );
+        animatedElements.forEach(el => {
+          el.classList.remove('is-visible');
+          observer.observe(el);
+        });
+      });
+    </script>
+
+    <!-- Smooth cursor glow effect (optional, subtle) -->
+    <script is:inline>
+      // Add subtle glow that follows cursor on hero sections
+      document.addEventListener('DOMContentLoaded', () => {
+        const hero = document.querySelector('.hero-glow');
+        if (!hero) return;
+
+        const glow = document.createElement('div');
+        glow.className = 'cursor-glow';
+        hero.appendChild(glow);
+
+        hero.addEventListener('mousemove', (e) => {
+          const rect = hero.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          glow.style.left = x + 'px';
+          glow.style.top = y + 'px';
+        });
+      });
+    </script>
+
+    <style is:global>
+      .cursor-glow {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(220, 165, 74, 0.08) 0%, transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        transition: opacity 0.3s ease;
+        z-index: 0;
+      }
+
+      .hero-glow {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-glow > * {
+        position: relative;
+        z-index: 1;
+      }
+    </style>
   </body>
 </html>

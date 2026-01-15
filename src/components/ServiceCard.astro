@@ -11,42 +11,50 @@ const { title, subtitle, description, features, highlighted = false } = Astro.pr
 ---
 
 <div class:list={[
-  'card relative overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1',
-  highlighted && 'ring-2 ring-brand-gold'
+  'card relative overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 group glass-shine',
+  highlighted && 'ring-2 ring-brand-gold shadow-brand-gold/20'
 ]}>
   {highlighted && (
-    <div class="absolute top-0 right-0 bg-brand-gold text-white text-xs font-semibold px-3 py-1 rounded-bl-lg">
+    <div class="absolute top-0 right-0 bg-gradient-to-r from-brand-gold to-brand-gold-light text-white text-xs font-semibold px-4 py-1.5 rounded-bl-xl">
       Most Popular
     </div>
   )}
 
-  <div class="mb-4">
-    <h3 class="font-display text-2xl text-brand-navy mb-1">{title}</h3>
-    <p class="text-brand-gold font-medium">{subtitle}</p>
+  <!-- Subtle gradient overlay on hover -->
+  <div class="absolute inset-0 bg-gradient-to-br from-brand-gold/0 to-brand-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
+
+  <div class="relative z-10">
+    <div class="mb-4">
+      <h3 class="font-display text-2xl text-brand-navy mb-1 group-hover:text-brand-gold transition-colors duration-300">{title}</h3>
+      <p class="text-brand-gold font-medium">{subtitle}</p>
+    </div>
+
+    <p class="text-brand-gray mb-6">{description}</p>
+
+    <ul class="space-y-3 mb-6">
+      {features.map((feature, index) => (
+        <li
+          class="flex items-start gap-3 opacity-90 group-hover:opacity-100 transition-all duration-300"
+          style={`transition-delay: ${index * 50}ms;`}
+        >
+          <svg class="w-5 h-5 text-brand-gold flex-shrink-0 mt-0.5 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          <span class="text-brand-gray">{feature}</span>
+        </li>
+      ))}
+    </ul>
+
+    <a
+      href="https://calendly.com/waypointtalks"
+      target="_blank"
+      rel="noopener"
+      class:list={[
+        'w-full text-center block',
+        highlighted ? 'btn-primary' : 'btn-secondary'
+      ]}
+    >
+      Get Started
+    </a>
   </div>
-
-  <p class="text-brand-gray mb-6">{description}</p>
-
-  <ul class="space-y-3 mb-6">
-    {features.map(feature => (
-      <li class="flex items-start gap-3">
-        <svg class="w-5 h-5 text-brand-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-        </svg>
-        <span class="text-brand-gray">{feature}</span>
-      </li>
-    ))}
-  </ul>
-
-  <a
-    href="https://calendly.com/waypointtalks"
-    target="_blank"
-    rel="noopener"
-    class:list={[
-      'w-full text-center',
-      highlighted ? 'btn-primary' : 'btn-secondary'
-    ]}
-  >
-    Get Started
-  </a>
 </div>

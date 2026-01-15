@@ -61,22 +61,42 @@ const testimonials = [
   title="Waypoint Talks | Clarity Coaching"
   description="Clarity coaching to help you untangle thoughts, make decisions, and take action. Set your Waypoint today."
 >
-  <!-- Hero Section -->
-  <section class="section bg-gradient-to-b from-brand-cream to-brand-cream-dark">
-    <div class="container">
-      <div class="max-w-3xl mx-auto text-center animate-fade-in-up">
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-display text-brand-navy mb-6 leading-tight">
+  <!-- Hero Section with cursor glow -->
+  <section class="section hero-glow relative overflow-hidden">
+    <!-- Decorative elements -->
+    <div class="absolute top-20 left-10 w-64 h-64 bg-brand-gold/5 rounded-full blur-3xl animate-float"></div>
+    <div class="absolute bottom-20 right-10 w-96 h-96 bg-brand-gold/5 rounded-full blur-3xl animate-float" style="animation-delay: -3s;"></div>
+
+    <div class="container relative z-10">
+      <div class="max-w-3xl mx-auto text-center">
+        <!-- Logo animation -->
+        <div class="mb-8 animate-scale-in">
+          <img
+            src="https://waypointtalks.com/wp-content/uploads/2025/03/Waypoint-talks-4.png"
+            alt="Waypoint Talks"
+            class="h-24 w-24 mx-auto animate-float"
+          />
+        </div>
+
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-display text-brand-navy mb-6 leading-tight animate-fade-in-up">
           Clarity Starts with a
-          <span class="text-brand-gold">Conversation</span>
+          <span class="text-gradient"> Conversation</span>
         </h1>
-        <p class="text-xl text-brand-gray mb-8 leading-relaxed">
+
+        <p class="text-xl text-brand-gray mb-8 leading-relaxed animate-fade-in-up delay-200">
           Feeling stuck? Overwhelmed by options? Disconnected from your priorities?
           Let's slow down, untangle your thoughts, and find your next step forward.
         </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button href="https://calendly.com/waypointtalks" external size="lg">
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up delay-300">
+          <a
+            href="https://calendly.com/waypointtalks"
+            target="_blank"
+            rel="noopener"
+            class="btn-primary animate-pulse-subtle glass-shine text-lg px-8 py-4"
+          >
             Book a Free Intro Call
-          </Button>
+          </a>
           <Button href="/waypoint-talks/offerings" variant="secondary" size="lg">
             View Offerings
           </Button>
@@ -86,9 +106,9 @@ const testimonials = [
   </section>
 
   <!-- Why Waypoint Section -->
-  <section class="section bg-white">
+  <section class="section">
     <div class="container">
-      <div class="max-w-3xl mx-auto text-center mb-12">
+      <div class="max-w-3xl mx-auto text-center mb-12 scroll-animate">
         <h2 class="text-3xl md:text-4xl font-display text-brand-navy mb-4">
           Why Waypoint Talks?
         </h2>
@@ -98,9 +118,9 @@ const testimonials = [
       </div>
 
       <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-        <div class="card">
-          <div class="w-12 h-12 bg-brand-gold/10 rounded-full flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="card glass-shine scroll-animate-left hover-lift">
+          <div class="w-14 h-14 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 rounded-2xl flex items-center justify-center mb-4">
+            <svg class="w-7 h-7 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
             </svg>
           </div>
@@ -110,9 +130,9 @@ const testimonials = [
           </p>
         </div>
 
-        <div class="card">
-          <div class="w-12 h-12 bg-brand-gold/10 rounded-full flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="card glass-shine scroll-animate-right hover-lift">
+          <div class="w-14 h-14 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 rounded-2xl flex items-center justify-center mb-4">
+            <svg class="w-7 h-7 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
             </svg>
           </div>
@@ -126,9 +146,12 @@ const testimonials = [
   </section>
 
   <!-- Services Preview -->
-  <section class="section">
-    <div class="container">
-      <div class="max-w-3xl mx-auto text-center mb-12">
+  <section class="section relative overflow-hidden">
+    <!-- Background decoration -->
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-white/30 to-transparent"></div>
+
+    <div class="container relative z-10">
+      <div class="max-w-3xl mx-auto text-center mb-12 scroll-animate">
         <h2 class="text-3xl md:text-4xl font-display text-brand-navy mb-4">
           Choose Your Path
         </h2>
@@ -137,13 +160,15 @@ const testimonials = [
         </p>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-8 stagger-children">
-        {services.map(service => (
-          <ServiceCard {...service} />
+      <div class="grid md:grid-cols-3 gap-8">
+        {services.map((service, index) => (
+          <div class="scroll-animate" style={`transition-delay: ${index * 0.1}s;`}>
+            <ServiceCard {...service} />
+          </div>
         ))}
       </div>
 
-      <div class="text-center mt-12">
+      <div class="text-center mt-12 scroll-animate">
         <Button href="/waypoint-talks/offerings" variant="secondary">
           Learn More About Each Option
         </Button>
@@ -152,35 +177,46 @@ const testimonials = [
   </section>
 
   <!-- Testimonials -->
-  <section class="section bg-white">
+  <section class="section">
     <div class="container">
-      <div class="max-w-3xl mx-auto text-center mb-12">
+      <div class="max-w-3xl mx-auto text-center mb-12 scroll-animate">
         <h2 class="text-3xl md:text-4xl font-display text-brand-navy mb-4">
           What Clients Say
         </h2>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-8 stagger-children">
-        {testimonials.map(testimonial => (
-          <TestimonialCard {...testimonial} />
+      <div class="grid md:grid-cols-3 gap-8">
+        {testimonials.map((testimonial, index) => (
+          <div class="scroll-animate-scale" style={`transition-delay: ${index * 0.15}s;`}>
+            <TestimonialCard {...testimonial} />
+          </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- CTA Section -->
-  <section class="section bg-brand-navy text-white">
-    <div class="container">
-      <div class="max-w-2xl mx-auto text-center">
-        <h2 class="text-3xl md:text-4xl font-display mb-4">
+  <!-- CTA Section with glass effect -->
+  <section class="section relative overflow-hidden">
+    <div class="absolute inset-0 bg-brand-navy"></div>
+    <!-- Glass overlay -->
+    <div class="absolute inset-0 bg-gradient-to-br from-brand-gold/10 via-transparent to-brand-gold/5"></div>
+
+    <div class="container relative z-10">
+      <div class="max-w-2xl mx-auto text-center scroll-animate">
+        <h2 class="text-3xl md:text-4xl font-display text-white mb-4">
           You Don't Need to Have It All Figured Out
         </h2>
         <p class="text-gray-300 text-lg mb-8">
           That's exactly why we talk. Book a free intro call and let's explore what clarity could look like for you.
         </p>
-        <Button href="https://calendly.com/waypointtalks" external size="lg">
+        <a
+          href="https://calendly.com/waypointtalks"
+          target="_blank"
+          rel="noopener"
+          class="btn-primary animate-pulse-subtle glass-shine text-lg px-8 py-4"
+        >
           Book Your Free Call
-        </Button>
+        </a>
       </div>
     </div>
   </section>
