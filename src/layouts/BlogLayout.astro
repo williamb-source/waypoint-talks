@@ -1,0 +1,118 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Button from '../components/Button.astro';
+
+interface Props {
+  frontmatter: {
+    title: string;
+    description: string;
+    pubDate: Date;
+    updatedDate?: Date;
+    author?: string;
+    image?: string;
+    tags?: string[];
+  };
+}
+
+const { frontmatter } = Astro.props;
+
+const formattedDate = frontmatter.pubDate.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+---
+
+<BaseLayout
+  title={`${frontmatter.title} | Waypoint Talks Blog`}
+  description={frontmatter.description}
+  image={frontmatter.image}
+  article={true}
+>
+  <article class="section">
+    <div class="container">
+      <div class="max-w-3xl mx-auto">
+        <!-- Back Link -->
+        <a
+          href="/waypoint-talks/blog"
+          class="inline-flex items-center gap-2 text-brand-gray hover:text-brand-gold transition-colors mb-8"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Back to Blog
+        </a>
+
+        <!-- Header -->
+        <header class="mb-12">
+          <h1 class="text-3xl md:text-4xl lg:text-5xl font-display text-brand-navy mb-4 leading-tight">
+            {frontmatter.title}
+          </h1>
+
+          <div class="flex flex-wrap items-center gap-4 text-brand-gray">
+            <span>{frontmatter.author || 'William Bierbower'}</span>
+            <span class="text-brand-gold">•</span>
+            <time datetime={frontmatter.pubDate.toISOString()}>{formattedDate}</time>
+          </div>
+
+          {frontmatter.tags && frontmatter.tags.length > 0 && (
+            <div class="flex flex-wrap gap-2 mt-4">
+              {frontmatter.tags.map(tag => (
+                <span class="text-xs bg-brand-gold/10 text-brand-gold px-3 py-1 rounded-full">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+        </header>
+
+        <!-- Content -->
+        <div class="prose prose-lg max-w-none prose-headings:font-display prose-headings:text-brand-navy prose-p:text-brand-gray prose-a:text-brand-gold prose-a:no-underline hover:prose-a:underline prose-strong:text-brand-navy prose-blockquote:border-brand-gold prose-blockquote:text-brand-gray">
+          <slot />
+        </div>
+
+        <!-- CTA -->
+        <div class="mt-16 pt-8 border-t border-brand-gold/10">
+          <div class="bg-brand-cream-dark rounded-2xl p-8 text-center">
+            <h3 class="text-xl font-display text-brand-navy mb-3">
+              Want to explore these ideas together?
+            </h3>
+            <p class="text-brand-gray mb-6">
+              Book a free intro call and let's have a conversation about what clarity could look like for you.
+            </p>
+            <Button href="https://calendly.com/waypointtalks" external>
+              Book a Free Call
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style is:global>
+  /* Additional prose styling */
+  .prose h2 {
+    @apply mt-12 mb-4;
+  }
+
+  .prose h3 {
+    @apply mt-8 mb-3;
+  }
+
+  .prose p {
+    @apply mb-6 leading-relaxed;
+  }
+
+  .prose ul, .prose ol {
+    @apply mb-6 text-brand-gray;
+  }
+
+  .prose li {
+    @apply mb-2;
+  }
+
+  .prose blockquote {
+    @apply italic pl-6 my-8;
+  }
+</style>

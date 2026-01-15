@@ -1,0 +1,123 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Button from '../../components/Button.astro';
+
+const posts = (await getCollection('blog'))
+  .filter(post => !post.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout
+  title="Blog | Waypoint Talks"
+  description="Insights on clarity, coaching, career transitions, and finding your direction."
+>
+  <!-- Hero Section -->
+  <section class="section">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="text-4xl md:text-5xl font-display text-brand-navy mb-6">
+          Insights & Ideas
+        </h1>
+        <p class="text-xl text-brand-gray">
+          Thoughts on clarity, decision-making, and finding your way forward.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Posts -->
+  <section class="pb-16">
+    <div class="container">
+      {posts.length > 0 ? (
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {posts.map((post) => {
+            const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            });
+
+            return (
+              <article class="card group hover:shadow-xl transition-all duration-300">
+                <a href={`/waypoint-talks/blog/${post.slug}`} class="block">
+                  <div class="mb-4">
+                    {post.data.tags && post.data.tags.length > 0 && (
+                      <div class="flex flex-wrap gap-2 mb-3">
+                        {post.data.tags.slice(0, 2).map(tag => (
+                          <span class="text-xs bg-brand-gold/10 text-brand-gold px-2 py-1 rounded-full">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                    <h2 class="font-display text-xl text-brand-navy group-hover:text-brand-gold transition-colors mb-2">
+                      {post.data.title}
+                    </h2>
+                    <time class="text-sm text-brand-gray" datetime={post.data.pubDate.toISOString()}>
+                      {formattedDate}
+                    </time>
+                  </div>
+
+                  <p class="text-brand-gray line-clamp-3">
+                    {post.data.description}
+                  </p>
+
+                  <span class="inline-flex items-center gap-1 text-brand-gold font-medium mt-4 group-hover:gap-2 transition-all">
+                    Read more
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </span>
+                </a>
+              </article>
+            );
+          })}
+        </div>
+      ) : (
+        <div class="max-w-xl mx-auto text-center py-16">
+          <div class="w-16 h-16 bg-brand-gold/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+            </svg>
+          </div>
+          <h2 class="text-2xl font-display text-brand-navy mb-4">
+            Coming Soon
+          </h2>
+          <p class="text-brand-gray mb-8">
+            I'm working on some articles about clarity, decision-making, and finding your direction. Check back soon!
+          </p>
+          <Button href="/waypoint-talks/contact">
+            Get Notified When Posts Drop
+          </Button>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="text-2xl font-display text-brand-navy mb-4">
+          Prefer a Conversation?
+        </h2>
+        <p class="text-brand-gray mb-8">
+          Reading is great, but sometimes you need to think out loud. Book a free call and let's explore your situation together.
+        </p>
+        <Button href="https://calendly.com/waypointtalks" external>
+          Book a Free Call
+        </Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

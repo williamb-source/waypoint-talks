@@ -1,0 +1,59 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  article?: boolean;
+}
+
+const {
+  title,
+  description,
+  image = '/waypoint-talks/images/og-image.jpg',
+  article = false
+} = Astro.props;
+
+const siteUrl = 'https://williambierbower.github.io/waypoint-talks';
+const canonicalURL = new URL(Astro.url.pathname, siteUrl);
+const socialImageURL = new URL(image, 'https://williambierbower.github.io');
+---
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={article ? 'article' : 'website'} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={socialImageURL} />
+<meta property="og:site_name" content="Waypoint Talks" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonicalURL} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={socialImageURL} />
+
+<!-- Structured Data -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Waypoint Talks",
+  "description": "Clarity coaching - helping you untangle thoughts, make decisions, and take action",
+  "email": "william@waypointtalks.com",
+  "url": siteUrl,
+  "sameAs": [
+    "https://www.tiktok.com/@waypoint.talks"
+  ],
+  "founder": {
+    "@type": "Person",
+    "name": "William Bierbower"
+  },
+  "serviceType": "Life Coaching",
+  "areaServed": "Worldwide"
+})} />

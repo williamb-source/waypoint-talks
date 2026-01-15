@@ -1,0 +1,96 @@
+---
+const navLinks = [
+  { href: '/waypoint-talks/', label: 'Home' },
+  { href: '/waypoint-talks/about', label: 'About' },
+  { href: '/waypoint-talks/offerings', label: 'Offerings' },
+  { href: '/waypoint-talks/blog', label: 'Blog' },
+  { href: '/waypoint-talks/contact', label: 'Contact' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="sticky top-0 z-50 bg-brand-cream/95 backdrop-blur-sm border-b border-brand-gold/10">
+  <nav class="container py-4">
+    <div class="flex items-center justify-between">
+      <!-- Logo -->
+      <a href="/waypoint-talks/" class="flex items-center gap-2 group">
+        <div class="w-10 h-10 bg-brand-gold rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+          <span class="text-white font-display font-bold text-lg">W</span>
+        </div>
+        <span class="font-display font-bold text-xl text-brand-navy">Waypoint Talks</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center gap-8">
+        {navLinks.map(link => (
+          <a
+            href={link.href}
+            class:list={[
+              'font-medium transition-colors',
+              currentPath === link.href || (link.href !== '/waypoint-talks/' && currentPath.startsWith(link.href))
+                ? 'text-brand-gold'
+                : 'text-brand-navy hover:text-brand-gold'
+            ]}
+          >
+            {link.label}
+          </a>
+        ))}
+        <a href="https://calendly.com/waypointtalks" target="_blank" rel="noopener" class="btn-primary">
+          Book a Call
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="mobile-menu-btn"
+        class="md:hidden p-2 text-brand-navy hover:text-brand-gold transition-colors"
+        aria-label="Toggle menu"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 border-t border-brand-gold/10 pt-4">
+      <div class="flex flex-col gap-4">
+        {navLinks.map(link => (
+          <a
+            href={link.href}
+            class:list={[
+              'font-medium py-2 transition-colors',
+              currentPath === link.href || (link.href !== '/waypoint-talks/' && currentPath.startsWith(link.href))
+                ? 'text-brand-gold'
+                : 'text-brand-navy hover:text-brand-gold'
+            ]}
+          >
+            {link.label}
+          </a>
+        ))}
+        <a href="https://calendly.com/waypointtalks" target="_blank" rel="noopener" class="btn-primary text-center mt-2">
+          Book a Call
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIcon = document.getElementById('menu-icon');
+
+  menuBtn?.addEventListener('click', () => {
+    const isOpen = mobileMenu?.classList.contains('hidden');
+    mobileMenu?.classList.toggle('hidden');
+
+    if (menuIcon) {
+      menuIcon.setAttribute('d', isOpen
+        ? 'M6 18L18 6M6 6l12 12'
+        : 'M4 6h16M4 12h16M4 18h16'
+      );
+    }
+  });
+</script>

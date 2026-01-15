@@ -1,0 +1,187 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
+
+const services = [
+  {
+    title: 'Clarity Jumpstart',
+    subtitle: '45-minute single session',
+    description: 'Break through the fog and gain direction on career, life, or mindset challenges.',
+    features: [
+      'One-on-one clarity session',
+      'Action plan summary sent afterward',
+      'Perfect for first-time clients'
+    ]
+  },
+  {
+    title: 'The Waypoint Package',
+    subtitle: '3 sessions over 3 weeks',
+    description: 'An anchor and momentum for those ready to commit to real change.',
+    features: [
+      'Three individual sessions',
+      'Unlimited email check-ins',
+      'Session notes with action plans'
+    ],
+    highlighted: true
+  },
+  {
+    title: 'Waypoint Deep Dive',
+    subtitle: '6 sessions over 3 months',
+    description: 'Sustained support for major life transitions, career changes, and burnout recovery.',
+    features: [
+      'Six bi-weekly sessions',
+      'Unlimited email & voice-note check-ins',
+      'Customized clarity exercises'
+    ]
+  }
+];
+
+const testimonials = [
+  {
+    quote: "The clarity I gained from just one session was incredible. I finally feel like I know what direction to take.",
+    author: "Sarah M.",
+    role: "Marketing Director"
+  },
+  {
+    quote: "William has a gift for asking the right questions. He helped me see possibilities I couldn't see on my own.",
+    author: "James T.",
+    role: "Software Engineer"
+  },
+  {
+    quote: "I was stuck in analysis paralysis for months. After working with Waypoint Talks, I took action within a week.",
+    author: "Michelle K.",
+    role: "Entrepreneur"
+  }
+];
+---
+
+<BaseLayout
+  title="Waypoint Talks | Clarity Coaching"
+  description="Clarity coaching to help you untangle thoughts, make decisions, and take action. Set your Waypoint today."
+>
+  <!-- Hero Section -->
+  <section class="section bg-gradient-to-b from-brand-cream to-brand-cream-dark">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center animate-fade-in-up">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-display text-brand-navy mb-6 leading-tight">
+          Clarity Starts with a
+          <span class="text-brand-gold">Conversation</span>
+        </h1>
+        <p class="text-xl text-brand-gray mb-8 leading-relaxed">
+          Feeling stuck? Overwhelmed by options? Disconnected from your priorities?
+          Let's slow down, untangle your thoughts, and find your next step forward.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button href="https://calendly.com/waypointtalks" external size="lg">
+            Book a Free Intro Call
+          </Button>
+          <Button href="/waypoint-talks/offerings" variant="secondary" size="lg">
+            View Offerings
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Waypoint Section -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-display text-brand-navy mb-4">
+          Why Waypoint Talks?
+        </h2>
+        <p class="text-lg text-brand-gray">
+          Clarity takes space. Meaningful insights emerge when you have room to think and speak freely.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="card">
+          <div class="w-12 h-12 bg-brand-gold/10 rounded-full flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+            </svg>
+          </div>
+          <h3 class="font-display text-xl text-brand-navy mb-2">Begin with Clarity</h3>
+          <p class="text-brand-gray">
+            We start by exploring where you are right now, what concerns you, and what matters most. No pressure, no agenda — just space to think out loud.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="w-12 h-12 bg-brand-gold/10 rounded-full flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+            </svg>
+          </div>
+          <h3 class="font-display text-xl text-brand-navy mb-2">End with Direction</h3>
+          <p class="text-brand-gray">
+            Every session ends with one clear realization and one concrete next step. You leave grounded, reconnected to your priorities, and ready to move.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Preview -->
+  <section class="section">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-display text-brand-navy mb-4">
+          Choose Your Path
+        </h2>
+        <p class="text-lg text-brand-gray">
+          Whether you need a single breakthrough session or sustained support, there's an option for you.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 stagger-children">
+        {services.map(service => (
+          <ServiceCard {...service} />
+        ))}
+      </div>
+
+      <div class="text-center mt-12">
+        <Button href="/waypoint-talks/offerings" variant="secondary">
+          Learn More About Each Option
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-display text-brand-navy mb-4">
+          What Clients Say
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 stagger-children">
+        {testimonials.map(testimonial => (
+          <TestimonialCard {...testimonial} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section bg-brand-navy text-white">
+    <div class="container">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl font-display mb-4">
+          You Don't Need to Have It All Figured Out
+        </h2>
+        <p class="text-gray-300 text-lg mb-8">
+          That's exactly why we talk. Book a free intro call and let's explore what clarity could look like for you.
+        </p>
+        <Button href="https://calendly.com/waypointtalks" external size="lg">
+          Book Your Free Call
+        </Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

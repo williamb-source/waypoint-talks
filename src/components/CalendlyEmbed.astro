@@ -1,0 +1,33 @@
+---
+interface Props {
+  url?: string;
+  height?: string;
+}
+
+const {
+  url = "https://calendly.com/waypointtalks",
+  height = "700px"
+} = Astro.props;
+---
+
+<div class="calendly-container rounded-2xl overflow-hidden shadow-lg bg-white">
+  <div
+    class="calendly-inline-widget"
+    data-url={url}
+    style={`min-width:320px;height:${height};`}
+  ></div>
+</div>
+
+<script is:inline src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+<style>
+  .calendly-container {
+    max-width: 100%;
+  }
+
+  @media (max-width: 640px) {
+    .calendly-inline-widget {
+      height: 800px !important;
+    }
+  }
+</style>

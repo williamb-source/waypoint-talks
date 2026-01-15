@@ -1,0 +1,52 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+  description: string;
+  features: string[];
+  highlighted?: boolean;
+}
+
+const { title, subtitle, description, features, highlighted = false } = Astro.props;
+---
+
+<div class:list={[
+  'card relative overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1',
+  highlighted && 'ring-2 ring-brand-gold'
+]}>
+  {highlighted && (
+    <div class="absolute top-0 right-0 bg-brand-gold text-white text-xs font-semibold px-3 py-1 rounded-bl-lg">
+      Most Popular
+    </div>
+  )}
+
+  <div class="mb-4">
+    <h3 class="font-display text-2xl text-brand-navy mb-1">{title}</h3>
+    <p class="text-brand-gold font-medium">{subtitle}</p>
+  </div>
+
+  <p class="text-brand-gray mb-6">{description}</p>
+
+  <ul class="space-y-3 mb-6">
+    {features.map(feature => (
+      <li class="flex items-start gap-3">
+        <svg class="w-5 h-5 text-brand-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+        <span class="text-brand-gray">{feature}</span>
+      </li>
+    ))}
+  </ul>
+
+  <a
+    href="https://calendly.com/waypointtalks"
+    target="_blank"
+    rel="noopener"
+    class:list={[
+      'w-full text-center',
+      highlighted ? 'btn-primary' : 'btn-secondary'
+    ]}
+  >
+    Get Started
+  </a>
+</div>

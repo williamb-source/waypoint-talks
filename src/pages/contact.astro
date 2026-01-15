@@ -1,0 +1,131 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import CalendlyEmbed from '../components/CalendlyEmbed.astro';
+---
+
+<BaseLayout
+  title="Contact | Waypoint Talks"
+  description="Get in touch with Waypoint Talks. Book a clarity call or send a message."
+>
+  <!-- Hero Section -->
+  <section class="section">
+    <div class="container">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="text-4xl md:text-5xl font-display text-brand-navy mb-6">
+          Let's Talk
+        </h1>
+        <p class="text-xl text-brand-gray">
+          No pressure, just possibility. Reach out with questions or book a free intro call to see if we're a good fit.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Options -->
+  <section class="pb-16">
+    <div class="container">
+      <div class="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+
+        <!-- Contact Form -->
+        <div>
+          <h2 class="text-2xl font-display text-brand-navy mb-6">
+            Send a Message
+          </h2>
+          <p class="text-brand-gray mb-8">
+            Got questions? Curious about coaching? Just want to say hi? Drop me a message and I'll respond within 24-48 hours.
+          </p>
+
+          <ContactForm />
+
+          <!-- Direct Contact -->
+          <div class="mt-8 pt-8 border-t border-brand-gold/10">
+            <h3 class="font-semibold text-brand-navy mb-4">Or reach out directly:</h3>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="mailto:william@waypointtalks.com"
+                  class="text-brand-gray hover:text-brand-gold transition-colors flex items-center gap-3"
+                >
+                  <svg class="w-5 h-5 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                  </svg>
+                  william@waypointtalks.com
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.tiktok.com/@waypoint.talks"
+                  target="_blank"
+                  rel="noopener"
+                  class="text-brand-gray hover:text-brand-gold transition-colors flex items-center gap-3"
+                >
+                  <svg class="w-5 h-5 text-brand-gold" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/>
+                  </svg>
+                  @waypoint.talks on TikTok
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Calendly Booking -->
+        <div>
+          <h2 class="text-2xl font-display text-brand-navy mb-6">
+            Book a Free Intro Call
+          </h2>
+          <p class="text-brand-gray mb-8">
+            Ready to explore what clarity could look like for you? Book a free 15-20 minute intro call. No commitment, no pressure — just a conversation.
+          </p>
+
+          <CalendlyEmbed />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- What to Expect -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-2xl font-display text-brand-navy mb-8 text-center">
+          What to Expect on the Intro Call
+        </h2>
+
+        <div class="grid sm:grid-cols-3 gap-6">
+          <div class="text-center">
+            <div class="w-12 h-12 bg-brand-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span class="text-brand-gold font-display font-bold">1</span>
+            </div>
+            <h3 class="font-semibold text-brand-navy mb-2">Share What's Going On</h3>
+            <p class="text-brand-gray text-sm">
+              Tell me what brought you here and what you're hoping to work through.
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div class="w-12 h-12 bg-brand-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span class="text-brand-gold font-display font-bold">2</span>
+            </div>
+            <h3 class="font-semibold text-brand-navy mb-2">Ask Questions</h3>
+            <p class="text-brand-gray text-sm">
+              Get curious about how coaching works and whether it feels right for you.
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div class="w-12 h-12 bg-brand-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span class="text-brand-gold font-display font-bold">3</span>
+            </div>
+            <h3 class="font-semibold text-brand-navy mb-2">Decide Together</h3>
+            <p class="text-brand-gray text-sm">
+              If it's a fit, we'll find the right option. If not, no hard feelings.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
